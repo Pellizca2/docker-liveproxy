@@ -3,7 +3,7 @@ ARG ALPINE_IMAGE=python:3-alpine3.18
 FROM ${ALPINE_IMAGE} as build
 
 # Install build dependencies
-RUN apk --no-cache add curl gcc git libxml2-dev libxslt-dev musl-dev  pip install --upgrade pip
+RUN apk --no-cache add curl gcc git libxml2-dev libxslt-dev musl-dev pip
 
 
 # Add liveproxy user for building
@@ -11,7 +11,7 @@ RUN addgroup -S liveproxy && adduser -S liveproxy -G liveproxy
 USER liveproxy
 
 # Build streamlink and liveproxy
-RUN pip3 install --user --no-cache-dir --no-warn-script-location https://github.com/omergorur/streamlink/archive/refs/heads/master.zip && \
+RUN pip install --user --no-cache-dir --no-warn-script-location https://github.com/omergorur/streamlink/archive/refs/heads/master.zip && \
   pip install --user --no-cache-dir --no-warn-script-location git+https://github.com/back-to/liveproxy.git
 
 # Create Liveproxy container
