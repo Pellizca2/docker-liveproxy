@@ -3,7 +3,8 @@ ARG ALPINE_IMAGE=python:3-alpine3.18
 FROM ${ALPINE_IMAGE} as build
 
 # Install build dependencies
-RUN apk --no-cache add curl gcc git libxml2-dev libxslt-dev musl-dev
+RUN apk --no-cache add curl gcc git libxml2-dev libxslt-dev musl-dev  pip install --upgrade pip
+
 
 # Add liveproxy user for building
 RUN addgroup -S liveproxy && adduser -S liveproxy -G liveproxy
