@@ -11,7 +11,9 @@ RUN addgroup -S liveproxy && adduser -S liveproxy -G liveproxy
 USER liveproxy
 
 # Build streamlink and liveproxy
-RUN pip install --user --no-cache-dir --no-warn-script-location https://github.com/omergorur/streamlink/archive/refs/heads/master.zip && \
+RUN
+ pip install --upgrade pip  --user --no-cache-dir --no-warn-script-location && \
+pip  install --user --no-cache-dir --no-warn-script-location https://github.com/omergorur/streamlink/archive/refs/heads/master.zip && \
   pip install --user --no-cache-dir --no-warn-script-location git+https://github.com/back-to/liveproxy.git
 
 # Create Liveproxy container
