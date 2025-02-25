@@ -12,7 +12,7 @@ USER liveproxy
 
 # Build streamlink and liveproxy
 RUN python -m pip install --upgrade pip
-RUN pip install --user --no-cache-dir --no-warn-script-location https://github.com/omergorur/streamlink/archive/refs/heads/master.zip && \
+RUN pip install --user --no-cache-dir --no-warn-script-location https://github.com/DevataDev/streamlink-drm/archive/refs/heads/master.zip && \
   pip install --user --no-cache-dir --no-warn-script-location git+https://github.com/back-to/liveproxy.git
 
 # Create Liveproxy container
