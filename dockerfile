@@ -6,6 +6,9 @@ FROM ${ALPINE_IMAGE} as build
 RUN apk --no-cache add curl gcc git libxml2-dev libxslt-dev musl-dev
 
 
+# Add liveproxy user for building
+RUN addgroup -S liveproxy && adduser -S liveproxy -G liveproxy
+USER liveproxy
 
 # Build streamlink and liveproxy
 RUN python -m pip install --upgrade pip
@@ -18,6 +21,9 @@ FROM ${ALPINE_IMAGE} as liveproxy
 # Install binary dependencies
 RUN apk --no-cache add ffmpeg libxml2 libxslt
 
+# Add liveproxy user
+RUN addgroup -S liveproxy && adduser -S liveproxy -G liveproxy
+USER liveproxy
 
 # Move liveproxy, streamlink, youtube-dl, and yt-dlp from the build image
 COPY --from=build /home/liveproxy/.local /home/liveproxy/.local
